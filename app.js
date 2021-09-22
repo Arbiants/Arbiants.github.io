@@ -768,7 +768,7 @@ window.onload = () => {
     }
   };
   
-
+	connectWallet();
 	const signer = await provider.getSigner();
     const account = await signer.getAddress();
     const code = accountToReferralCode(account);
