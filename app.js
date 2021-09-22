@@ -4,11 +4,11 @@ const chainId = 421611;
 //const env = "mainnet";
 //const chainId = 42161;
 const price = 0.05;
-import {qs} from "./node_modules/qs";
+/*import {qs} from "./node_modules/qs";
 import {
     referralCodeToAccount,
     accountToReferralCode
-} from "./utils";
+} from "./utils";*/
 const contractAddress = "0x8d1f147a19a0A19eB867859D4795D85fAADa9BDF";
 const etherscanUrl = "https://arbiscan.io/tx";
 let provider = null;
