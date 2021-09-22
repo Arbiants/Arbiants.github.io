@@ -773,7 +773,6 @@ window.onload = () => {
     if (!provider) {
       switchNetwork();
     } else {
-		connectWallet();
 		const signer = await provider.getSigner();
 		const account = await signer.getAddress();
 		const code = accountToReferralCode(account);
