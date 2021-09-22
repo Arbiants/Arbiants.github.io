@@ -1,5 +1,5 @@
 const env = "test";
-const chainId = 421611;
+const chainId = 0x66eeb;
 
 //const env = "mainnet";
 //const chainId = 42161;
