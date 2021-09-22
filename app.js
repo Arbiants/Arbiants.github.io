@@ -4,7 +4,7 @@ const chainId = 421611;
 //const env = "mainnet";
 //const chainId = 42161;
 const price = 0.05;
-import qs from "qs";
+import qs from "./node_modules/qs";
 import {
     referralCodeToAccount
 	accountToReferralCode
