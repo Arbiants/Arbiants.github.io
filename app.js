@@ -7,12 +7,11 @@ const price = 0.05;
 import {qs} from "./node_modules/qs";
 import {
     referralCodeToAccount,
-	accountToReferralCode
+    accountToReferralCode
 } from "./utils";
 const contractAddress = "0x8d1f147a19a0A19eB867859D4795D85fAADa9BDF";
 const etherscanUrl = "https://arbiscan.io/tx";
 let provider = null;
-//
 const abi = [
   {
     inputs: [
