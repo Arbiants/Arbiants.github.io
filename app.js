@@ -768,17 +768,18 @@ window.onload = () => {
     }
   };
   
-	connectWallet();
-	const signer = await provider.getSigner();
-    const account = await signer.getAddress();
-    const code = accountToReferralCode(account);
-    const link = `${window.location.href}/?ref=${code}`;
+
 
   const handleCopy = () => {
     if (!provider) {
       switchNetwork();
     } else {
-      navigator.clipboard.writeText(link).then(
+		connectWallet();
+		const signer = await provider.getSigner();
+		const account = await signer.getAddress();
+		const code = accountToReferralCode(account);
+		const link = `${window.location.href}/?ref=${code}`;
+		navigator.clipboard.writeText(link).then(
         function () {
           document.getElementById("copy-button").innerHTML = "COPIED";
           setTimeout(() => {
@@ -800,6 +801,8 @@ window.onload = () => {
       try {
         var inputValue = document.getElementById("amount-input-mobile").value;
         document.getElementById("mint-button-mobile").innerHTML = "Minting...";
+			const signer = await provider.getSigner();
+			const account = await signer.getAddress();
         if (!inputValue || Math.round(inputValue) !== Number(inputValue)) {
           document.getElementById("mint-button-mobile").innerHTML = `MINT (${inputValue ? price * inputValue : price} ETH)`;
           return $.toast({
