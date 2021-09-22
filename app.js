@@ -687,6 +687,13 @@ window.onload = () => {
         const account = await signer.getAddress();
         if (!inputValue || Math.round(inputValue) !== Number(inputValue)) {
           document.getElementById("mint-button").innerHTML = `MINT (${inputValue ? price * inputValue : price} ETH)`;
+          $.toast({
+            heading: "Error",
+            text: "1er if ok",
+            showHideTransition: "fade",
+            position: "top-center",
+            icon: "error",
+          });
           return $.toast({
             heading: "Error",
             text: "Enter an integer！",
@@ -696,6 +703,13 @@ window.onload = () => {
           });
         } else if (Number(inputValue) > 10) {
           document.getElementById("mint-button").innerHTML = `MINT (${inputValue ? price * inputValue : price} ETH)`;
+          $.toast({
+            heading: "Error",
+            text: "1 else if ok",
+            showHideTransition: "fade",
+            position: "top-center",
+            icon: "error",
+          });
           return $.toast({
             heading: "Error",
             text: "Max amount 10！",
