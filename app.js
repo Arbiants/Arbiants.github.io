@@ -624,7 +624,7 @@ window.onload = () => {
           method: "wallet_addEthereumChain",
           params: [
             {
-              chainId: "421611",
+              chainId: "0x66EEB",
               chainName: "Arbitrum Testnet",
               nativeCurrency: {
                 name: "ETH",
