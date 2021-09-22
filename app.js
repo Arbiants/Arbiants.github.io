@@ -1,10 +1,14 @@
 const env = "test";
-const chainId = 0x66eeb;
+const chainId = 421611;
 
 //const env = "mainnet";
 //const chainId = 42161;
 const price = 0.05;
-
+import qs from "qs";
+import {
+    referralCodeToAccount
+	accountToReferralCode
+} from "./utils";
 const contractAddress = "0x8d1f147a19a0A19eB867859D4795D85fAADa9BDF";
 const etherscanUrl = "https://arbiscan.io/tx";
 let provider = null;
@@ -764,12 +768,18 @@ window.onload = () => {
       }
     }
   };
+  
+
+	const signer = await provider.getSigner();
+    const account = await signer.getAddress();
+    const code = accountToReferralCode(account);
+    const link = `${window.location.href}/?ref=${code}`;
 
   const handleCopy = () => {
     if (!provider) {
       switchNetwork();
     } else {
-      navigator.clipboard.writeText(window.location.href).then(
+      navigator.clipboard.writeText(link).then(
         function () {
           document.getElementById("copy-button").innerHTML = "COPIED";
           setTimeout(() => {
@@ -791,8 +801,6 @@ window.onload = () => {
       try {
         var inputValue = document.getElementById("amount-input-mobile").value;
         document.getElementById("mint-button-mobile").innerHTML = "Minting...";
-        const signer = await provider.getSigner();
-        const account = await signer.getAddress();
         if (!inputValue || Math.round(inputValue) !== Number(inputValue)) {
           document.getElementById("mint-button-mobile").innerHTML = `MINT (${inputValue ? price * inputValue : price} ETH)`;
           return $.toast({
