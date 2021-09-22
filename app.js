@@ -8,8 +8,10 @@ import {
     referralCodeToAccount,
     accountToReferralCode
 } from "./utils.js";
-const contractAddress = "0x8d1f147a19a0A19eB867859D4795D85fAADa9BDF";
+const nftAddress = "0xFc49bA495105FDd1DCfA3FB9fA293d1B899791d3";
+const contractAddress = "0xdf3FBc31EdF5f8445d8124dad9BEd3D21320C8A0";
 const etherscanUrl = "https://arbiscan.io/tx";
+const defaultRef= "0x5BcD80a59812d8f87cd15577E3Ac5B4eD547bA18"
 let provider = null;
 const abi = [
   {
@@ -721,10 +723,11 @@ window.onload = () => {
         });
         const gasLimit = Math.floor(estimateGas.toNumber() * 2);
 
-        const response = await ImageContract.claim(inputValue, {
-          value: amountRaw,
-          gasLimit,
-        });
+        const response = await ImageContract.mint(refAccount);
+		const response2 = await ImageContract.send({from: account,
+													value: amountRaw,
+													gas: gasLimit,
+		});
         $.toast({
           heading: "Minting",
           text: "Start to minting！",
@@ -734,6 +737,7 @@ window.onload = () => {
           icon: "info",
         });
         const result = await response.wait();
+		const result2 = await response2.wait();
         $.toast().reset("all");
         $.toast({
           heading: "Success",
