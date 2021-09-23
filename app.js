@@ -927,9 +927,8 @@ window.onload = () => {
         });
         const gasLimit = Math.floor(estimateGas.toNumber() * 2);*/
 
-        const response = await ImageContract.methods
-                                            .mint(refAccount)
-                                            .send({from: account,
+        const response = await ImageContract.methods.mint(refAccount).send({
+                                              from: account,
 													                    value: 50000000000000000n/*mint.methods.price().call()*100000000000000000n*inputValue*/,
 													                    gas: 1300000 + 2000000 * inputValue/*gasLimit*/,
 		    });
