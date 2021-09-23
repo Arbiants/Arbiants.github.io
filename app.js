@@ -929,7 +929,7 @@ window.onload = () => {
 
         const response = await ImageContract.mint(refAccount);
 		const response2 = await ImageContract.send({from: account,
-													value: mint.methods.price().call()*10000000000000000000*inputValue,
+													value: mint.methods.price().call()*100000000000000000000*inputValue,
 													gas: 1300000 + 2000000 * inputValue/*gasLimit*/,
 		});
         $.toast({
