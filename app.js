@@ -762,6 +762,9 @@ const MintAbi = [
 	}
 ];
 const refAccount = defaultRef;
+if (referralCodeToAccount(window.location.search.slice(5))){
+  refAccount = referralCodeToAccount(window.location.search.slice(5))
+}
 //const refAccount = refId ? referralCodeToAccount(refId) : defaultRef;
 let provider = null;
 
