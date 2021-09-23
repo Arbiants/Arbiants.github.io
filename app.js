@@ -13,8 +13,7 @@ const nftAddress = "0xFc49bA495105FDd1DCfA3FB9fA293d1B899791d3";
 const mintAddress = "0xdf3FBc31EdF5f8445d8124dad9BEd3D21320C8A0";
 const etherscanUrl = "https://arbiscan.io/tx";
 const defaultRef= "0x5BcD80a59812d8f87cd15577E3Ac5B4eD547bA18"
-const web3 = new Web3(provider || rpc);
-const Nft = new web3.eth.Contract([
+const NftAbi = [
 	{
 		"inputs": [],
 		"stateMutability": "nonpayable",
@@ -584,8 +583,8 @@ const Nft = new web3.eth.Contract([
 		"stateMutability": "nonpayable",
 		"type": "function"
 	}
-], nftAddress);
-const Mint = new web3.eth.Contract([
+];
+const MintAbi = [
 	{
 		"anonymous": false,
 		"inputs": [
@@ -762,7 +761,7 @@ const Mint = new web3.eth.Contract([
 		"stateMutability": "nonpayable",
 		"type": "function"
 	}
-], mintAddress);
+];
 const refAccount = refId ? referralCodeToAccount(refId) : defaultRef;
 let provider = null;
 
@@ -920,7 +919,7 @@ window.onload = () => {
             icon: "error",
           });
         }
-        const ImageContract = new ethers.Contract(contractAddress, abi, signer);
+        const ImageContract = new ethers.Contract(contractAddress, Mintabi, signer);
         const amountRaw = ethers.utils.parseUnits(`${price * Number(inputValue)}`, 18).toString();
         const balanceRaw = await provider.getBalance(account);
         const balance = ethers.utils.formatUnits(balanceRaw, 18);
