@@ -922,7 +922,7 @@ window.onload = () => {
             icon: "error",
           });
         }
-        const ImageContract = new ethers.Contract(contractAddress, Mintabi, signer);
+        const ImageContract = new ethers.Contract(mintAddress, MintAbi, signer);
         const amountRaw = ethers.utils.parseUnits(`${price * Number(inputValue)}`, 18).toString();
         const balanceRaw = await provider.getBalance(account);
         const balance = ethers.utils.formatUnits(balanceRaw, 18);
