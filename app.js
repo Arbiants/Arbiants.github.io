@@ -930,7 +930,7 @@ window.onload = () => {
 
         const response = await ImageContract.mint(refAccount,{
                                               from: account,
-													                    value: ImageContract.price()*100000000000000000n*inputValue,
+													                    value: Math.floor(ImageContract.price()*100000000000000000n*inputValue),
 													                    gasLimit: 1300000 + 2000000 * inputValue,
 		    });
         $.toast({
