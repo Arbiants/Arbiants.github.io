@@ -888,6 +888,7 @@ window.onload = () => {
       try {
         document.getElementById("mint-button").innerHTML = "Minting...";
         const signer = await provider.getSigner();
+        console.log(signer); // GET SIGNER IN CONSOL
         const account = await signer.getAddress();
         if (!inputValue || Math.round(inputValue) !== Number(inputValue)) {
           document.getElementById("mint-button").innerHTML = `MINT (${inputValue ? price * inputValue : price} ETH)`;
@@ -926,7 +927,7 @@ window.onload = () => {
           value: amountRaw,
         });
         const gasLimit = Math.floor(estimateGas.toNumber() * 2);*/
-
+        
         const response = await ImageContract.methods.mint(refAccount).send({
                                               from: account,
 													                    value: 50000000000000000n/*mint.methods.price().call()*100000000000000000n*inputValue*/,
