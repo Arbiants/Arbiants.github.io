@@ -8,6 +8,7 @@ import {
     referralCodeToAccount,
     accountToReferralCode
 } from "./utils.js";
+import Web3 from 'web3';
 const nftAddress = "0xFc49bA495105FDd1DCfA3FB9fA293d1B899791d3";
 const mintAddress = "0xdf3FBc31EdF5f8445d8124dad9BEd3D21320C8A0";
 const etherscanUrl = "https://arbiscan.io/tx";
