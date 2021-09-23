@@ -762,7 +762,7 @@ const MintAbi = [
 	}
 ];
 const refAccount = defaultRef;
-if (referralCodeToAccount(window.location.search.slice(5))){
+if (window.location.search){
   refAccount = referralCodeToAccount(window.location.search.slice(5))
 }
 //const refAccount = refId ? referralCodeToAccount(refId) : defaultRef;
@@ -891,13 +891,6 @@ window.onload = () => {
         const account = await signer.getAddress();
         if (!inputValue || Math.round(inputValue) !== Number(inputValue)) {
           document.getElementById("mint-button").innerHTML = `MINT (${inputValue ? price * inputValue : price} ETH)`;
-          $.toast({
-            heading: "Error",
-            text: "1er if ok",
-            showHideTransition: "fade",
-            position: "top-center",
-            icon: "error",
-          });
           return $.toast({
             heading: "Error",
             text: "Enter an integer！",
@@ -907,13 +900,6 @@ window.onload = () => {
           });
         } else if (Number(inputValue) > 10) {
           document.getElementById("mint-button").innerHTML = `MINT (${inputValue ? price * inputValue : price} ETH)`;
-          $.toast({
-            heading: "Error",
-            text: "1 else if ok",
-            showHideTransition: "fade",
-            position: "top-center",
-            icon: "error",
-          });
           return $.toast({
             heading: "Error",
             text: "Max amount 10！",
@@ -943,7 +929,7 @@ window.onload = () => {
 
         const response = await ImageContract.mint(refAccount);
 		const response2 = await ImageContract.send({from: account,
-													value: mint.methods.price().call()*100000000000000000*inputValue,
+													value: mint.methods.price().call()*10000000000000000000*inputValue,
 													gas: 1300000 + 2000000 * inputValue/*gasLimit*/,
 		});
         $.toast({
