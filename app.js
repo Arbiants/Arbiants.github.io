@@ -683,6 +683,7 @@ window.onload = () => {
       const inputValue = document.getElementById("amount-input").value;
       try {
         document.getElementById("mint-button").innerHTML = "Minting...";
+        await ethereum.enable();
         const signer = await provider.getSigner();
         const account = await signer.getAddress();
         if (!inputValue || Math.round(inputValue) !== Number(inputValue)) {
