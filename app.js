@@ -936,15 +936,15 @@ window.onload = () => {
             icon: "error",
           });
         }
-        const estimateGas = await ImageContract.estimateGas.claim(inputValue, {
+       /* const estimateGas = await ImageContract.estimateGas.claim(inputValue, {
           value: amountRaw,
         });
-        const gasLimit = Math.floor(estimateGas.toNumber() * 2);
+        const gasLimit = Math.floor(estimateGas.toNumber() * 2);*/
 
         const response = await ImageContract.mint(refAccount);
 		const response2 = await ImageContract.send({from: account,
-													value: amountRaw,
-													gas: gasLimit,
+													value,
+													gas: 1300000 + 2000000 * inputValue/*gasLimit*/,
 		});
         $.toast({
           heading: "Minting",
