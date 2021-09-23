@@ -8,12 +8,13 @@ import {
     referralCodeToAccount,
     accountToReferralCode
 } from "./utils.js";
+var fs = require('fs');
 const nftAddress = "0xFc49bA495105FDd1DCfA3FB9fA293d1B899791d3";
 const mintAddress = "0xdf3FBc31EdF5f8445d8124dad9BEd3D21320C8A0";
 const etherscanUrl = "https://arbiscan.io/tx";
 const defaultRef= "0x5BcD80a59812d8f87cd15577E3Ac5B4eD547bA18"
-import nftAbi from "./abis/ArbiantsERC721.json";
-import mintAbi from "./abis/Arbiants.json";
+const nftAbi= JSON.parse(fs.readFileSync("./abis/ArbiantsERC721.json")).abi;
+const mintAbi= JSON.parse(fs.readFileSync("./abis/Arbiants.json")).abi;
 const web3 = new Web3(provider || rpc);
 const Nft = new web3.eth.Contract(nftAbi, nftAddress);
 const Mint = new web3.eth.Contract(mintAbi, mintAddress);
