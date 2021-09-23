@@ -8,12 +8,16 @@ import {
     referralCodeToAccount,
     accountToReferralCode
 } from "./utils.js";
+import detectEthereumProvider from "@metamask/detect-provider";
 const nftAddress = "0xFc49bA495105FDd1DCfA3FB9fA293d1B899791d3";
 const mintAddress = "0xdf3FBc31EdF5f8445d8124dad9BEd3D21320C8A0";
 const etherscanUrl = "https://arbiscan.io/tx";
 const defaultRef= "0x5BcD80a59812d8f87cd15577E3Ac5B4eD547bA18"
-import nftAbi from "./abis/ArbiApeClubERC721.json";
-import mintAbi from "./abis/ArbiApeClub.json";
+import nftAbi from "./abis/ArbiantsERC721.json";
+import mintAbi from "./abis/Arbiants.json";
+const web3 = new Web3(provider || rpc);
+const Nft = new web3.eth.Contract(nftAbi, nftAddress);
+const Mint = new web3.eth.Contract(mintAbi, mintAddress);
 const refAccount = refId ? referralCodeToAccount(refId) : defaultRef;
 let provider = null;
 
@@ -54,7 +58,8 @@ window.onload = () => {
     if (Number(window.ethereum.chainId) !== chainId) {
       return failedConnectWallet();
     }
-    provider = new ethers.providers.Web3Provider(window.ethereum);
+    provider = await detectEthereumProvider();
+    
     const accounts = await provider.send("eth_requestAccounts");
     const accountAddress = accounts[0];
     document.getElementById("address-button").innerHTML = `${accountAddress.slice(0, 4)}...${accountAddress.slice(accountAddress.length - 4, accountAddress.length)}`;
