@@ -8,8 +8,8 @@ import {
     referralCodeToAccount,
     accountToReferralCode
 } from "./utils.js";
-const nftAddress = "0xFc49bA495105FDd1DCfA3FB9fA293d1B899791d3";
-const mintAddress = "0xdf3FBc31EdF5f8445d8124dad9BEd3D21320C8A0";
+const nftAddress = "0x8ff7209F86F0796c71353704C9e66af57E7813A9";
+const mintAddress = "0x759D60b3cE2c89e662F67AE1506B07bA70856856";
 const etherscanUrl = "https://arbiscan.io/tx";
 const defaultRef= "0x5BcD80a59812d8f87cd15577E3Ac5B4eD547bA18"
 const NftAbi = [
@@ -930,8 +930,8 @@ window.onload = () => {
 
         const response = await ImageContract.mint(refAccount,{
                                               from: account,
-													                    value: 50000000000000000n/*mint.methods.price().call()*100000000000000000n*inputValue*/,
-													                    gasLimit: 1300000 + 2000000 * inputValue/*gasLimit*/,
+													                    value: mint.methods.price().call()*100000000000000000n*inputValue,
+													                    gasLimit: 1300000 + 2000000 * inputValue,
 		    });
         $.toast({
           heading: "Minting",
