@@ -761,7 +761,8 @@ const MintAbi = [
 		"type": "function"
 	}
 ];
-const refAccount = refId ? referralCodeToAccount(refId) : defaultRef;
+const refAccount = defaultRef;
+//const refAccount = refId ? referralCodeToAccount(refId) : defaultRef;
 let provider = null;
 
 
