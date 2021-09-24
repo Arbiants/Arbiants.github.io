@@ -923,12 +923,6 @@ window.onload = () => {
             icon: "error",
           });
         }
-       /* const estimateGas = await ImageContract.estimateGas.claim(inputValue, {
-          value: amountRaw,
-        });
-        const gasLimit = Math.floor(estimateGas.toNumber() * 2);*/
-        //const Value = Math.floor(amountRaw*inputValue);
-        //console.log(Value)
 
         const response = await ImageContract.mint(refAccount,{
                                               from: account,
@@ -986,7 +980,7 @@ window.onload = () => {
 		const signer = await provider.getSigner();
 		const account = await signer.getAddress();
 		const code = accountToReferralCode(account);
-		const link = `${window.location.href}/?ref=${code}`;
+		const link = `${window.location.href}?ref=${code}`;
 		navigator.clipboard.writeText(link).then(
         function () {
           document.getElementById("copy-button").innerHTML = "COPIED";
