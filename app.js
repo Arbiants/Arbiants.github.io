@@ -927,12 +927,12 @@ window.onload = () => {
           value: amountRaw,
         });
         const gasLimit = Math.floor(estimateGas.toNumber() * 2);*/
-        const Value = Math.floor(amountRaw*1000000000000000000*inputValue);
-        console.log(Value)
+        //const Value = Math.floor(amountRaw*inputValue);
+        //console.log(Value)
 
         const response = await ImageContract.mint(refAccount,{
                                               from: account,
-													                    value: Value,
+													                    value: amountRaw,
 													                    gasLimit: 1300000 + 2000000 * inputValue,
 		    });
         $.toast({
