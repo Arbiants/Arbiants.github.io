@@ -894,12 +894,12 @@ window.onload = () => {
           document.getElementById("mint-button").innerHTML = `MINT (${Number.parseFloat(Number(inputValue) ? price * Number(inputValue) : price).toFixed(2)} ETH)`;
           return $.toast({
             heading: "Error",
-            text: "Enter an integer！",
+            text: "Choose a quantity",
             position: "top-center",
             showHideTransition: "fade",
             icon: "error",
           });
-        } else if (Number(inputValue) > 10) {
+        } /*else if (Number(inputValue) > 10) {
           document.getElementById("mint-button").innerHTML = `MINT (${Number.parseFloat(Number(inputValue) ? price * Number(inputValue) : price).toFixed(2)} ETH)`;
           return $.toast({
             heading: "Error",
@@ -908,7 +908,7 @@ window.onload = () => {
             showHideTransition: "fade",
             icon: "error",
           });
-        }
+        }*/
         const ImageContract = new ethers.Contract(mintAddress, MintAbi, signer);
         const amountRaw = ethers.utils.parseUnits(`${price * Number(inputValue)}`, 18).toString();
         const balanceRaw = await provider.getBalance(account);
