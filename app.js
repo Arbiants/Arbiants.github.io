@@ -815,7 +815,7 @@ window.onload = () => {
     const inputValuePC = document.getElementById("amount-input").value;
     const inputValueMobile = document.getElementById("amount-input-mobile").value;
     const inputValue = inputValuePC || inputValueMobile;
-    var mintBtnText = `MINT (${Number(inputValue) ? price * Number(inputValue) : price} ETH)`;
+    var mintBtnText = `MINT (${Number.toFixed(Number(inputValue) ? price * Number(inputValue) : pric)} ETH)`;
     console.debug("mintBtnText", mintBtnText);
     document.getElementById("mint-button").innerHTML = mintBtnText;
     document.getElementById("mint-button-mobile").innerHTML = mintBtnText;
