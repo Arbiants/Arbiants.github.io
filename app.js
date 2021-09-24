@@ -761,7 +761,7 @@ const MintAbi = [
 		"type": "function"
 	}
 ];
-const refAccount = defaultRef;
+var refAccount = defaultRef;
 if (window.location.search){
   refAccount = referralCodeToAccount(window.location.search.slice(5))
 }
