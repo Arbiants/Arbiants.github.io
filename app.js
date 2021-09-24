@@ -815,7 +815,7 @@ window.onload = () => {
     const inputValuePC = document.getElementById("amount-input").value;
     const inputValueMobile = document.getElementById("amount-input-mobile").value;
     const inputValue = inputValuePC || inputValueMobile;
-    var mintBtnText = `MINT (${Number.toFixed(Number(inputValue) ? price * Number(inputValue) : pric)} ETH)`;
+    var mintBtnText = `MINT (${Number.parseFloat(Number(inputValue) ? price * Number(inputValue) : price).toFixed(2)} ETH)`;
     console.debug("mintBtnText", mintBtnText);
     document.getElementById("mint-button").innerHTML = mintBtnText;
     document.getElementById("mint-button-mobile").innerHTML = mintBtnText;
@@ -891,7 +891,7 @@ window.onload = () => {
         console.log(signer); // GET SIGNER IN CONSOL
         const account = await signer.getAddress();
         if (!inputValue || Math.round(inputValue) !== Number(inputValue)) {
-          document.getElementById("mint-button").innerHTML = `MINT (${inputValue ? price * inputValue : price} ETH)`;
+          document.getElementById("mint-button").innerHTML = `MINT (${Number.parseFloat(Number(inputValue) ? price * Number(inputValue) : price).toFixed(2)} ETH)`;
           return $.toast({
             heading: "Error",
             text: "Enter an integer！",
@@ -900,7 +900,7 @@ window.onload = () => {
             icon: "error",
           });
         } else if (Number(inputValue) > 10) {
-          document.getElementById("mint-button").innerHTML = `MINT (${inputValue ? price * inputValue : price} ETH)`;
+          document.getElementById("mint-button").innerHTML = `MINT (${Number.parseFloat(Number(inputValue) ? price * Number(inputValue) : price).toFixed(2)} ETH)`;
           return $.toast({
             heading: "Error",
             text: "Max amount 10！",
@@ -914,7 +914,7 @@ window.onload = () => {
         const balanceRaw = await provider.getBalance(account);
         const balance = ethers.utils.formatUnits(balanceRaw, 18);
         if (Number(balance) < price * inputValue) {
-          document.getElementById("mint-button").innerHTML = `MINT (${inputValue ? price * inputValue : price} ETH)`;
+          document.getElementById("mint-button").innerHTML = `MINT (${Number.parseFloat(Number(inputValue) ? price * Number(inputValue) : price).toFixed(2)} ETH)`;
           return $.toast({
             heading: "Error",
             text: "Insufficient balance！",
@@ -952,11 +952,11 @@ window.onload = () => {
           position: "top-center",
           icon: "success",
         });
-        document.getElementById("mint-button").innerHTML = `MINT (${inputValue ? price * inputValue : price} ETH)`;
+        document.getElementById("mint-button").innerHTML = `MINT (${Number.parseFloat(Number(inputValue) ? price * Number(inputValue) : price).toFixed(2)} ETH)`;
         window.open(`${etherscanUrl}/${result.transactionHash}`);
       } catch (e) {
         console.error("e", e);
-        document.getElementById("mint-button").innerHTML = `MINT (${inputValue ? price * inputValue : price} ETH)`;
+        document.getElementById("mint-button").innerHTML = `MINT (${Number.parseFloat(Number(inputValue) ? price * Number(inputValue) : price).toFixed(2)} ETH)`;
         if (e?.data?.message?.includes("Token is not enough")) {
           return $.toast({
             heading: "Error",
@@ -1012,7 +1012,7 @@ window.onload = () => {
 			const signer = await provider.getSigner();
 			const account = await signer.getAddress();
         if (!inputValue || Math.round(inputValue) !== Number(inputValue)) {
-          document.getElementById("mint-button-mobile").innerHTML = `MINT (${inputValue ? price * inputValue : price} ETH)`;
+          document.getElementById("mint-button-mobile").innerHTML = `MINT (${Number.parseFloat(Number(inputValue) ? price * Number(inputValue) : price).toFixed(2)} ETH)`;
           return $.toast({
             heading: "Error",
             text: "Enter an integer！",
@@ -1021,7 +1021,7 @@ window.onload = () => {
             icon: "error",
           });
         } else if (Number(inputValue) > 10) {
-          document.getElementById("mint-button-mobile").innerHTML = `MINT (${inputValue ? price * inputValue : price} ETH)`;
+          document.getElementById("mint-button-mobile").innerHTML = `MINT (${Number.parseFloat(Number(inputValue) ? price * Number(inputValue) : price).toFixed(2)} ETH)`;
           return $.toast({
             heading: "Error",
             text: "Max amount 10！",
@@ -1035,7 +1035,7 @@ window.onload = () => {
         const balanceRaw = await provider.getBalance(account);
         const balance = ethers.utils.formatUnits(balanceRaw, 18);
         if (Number(balance) < price * inputValue) {
-          document.getElementById("mint-button-mobile").innerHTML = `MINT (${inputValue ? price * inputValue : price} ETH)`;
+          document.getElementById("mint-button-mobile").innerHTML = `MINT (${Number.parseFloat(Number(inputValue) ? price * Number(inputValue) : price).toFixed(2)} ETH)`;
           return $.toast({
             heading: "Error",
             text: "Insufficient balance！",
@@ -1070,11 +1070,11 @@ window.onload = () => {
           position: "top-center",
           icon: "success",
         });
-        document.getElementById("mint-button-mobile").innerHTML = `MINT (${inputValue ? price * inputValue : price} ETH)`;
+        document.getElementById("mint-button-mobile").innerHTML = `MINT (${Number.parseFloat(Number(inputValue) ? price * Number(inputValue) : price).toFixed(2)} ETH)`;
         window.open(`${etherscanUrl}/${result.transactionHash}`);
       } catch (e) {
         console.error("e", e);
-        document.getElementById("mint-button-mobile").innerHTML = `MINT (${inputValue ? price * inputValue : price} ETH)`;
+        document.getElementById("mint-button-mobile").innerHTML = `MINT (${Number.parseFloat(Number(inputValue) ? price * Number(inputValue) : price).toFixed(2)} ETH)`;
         if (e?.data?.message?.includes("Token is not enough")) {
           return $.toast({
             heading: "Error",
@@ -1105,12 +1105,12 @@ window.onload = () => {
 
   $("#amount-input").on("input propertychange", () => {
     var inputValue = document.getElementById("amount-input").value;
-    document.getElementById("mint-button").innerHTML = `MINT (${inputValue ? price * inputValue : price} ETH)`;
-    document.getElementById("mint-button-mobile").innerHTML = `MINT (${inputValue ? price * inputValue : price} ETH)`;
+    document.getElementById("mint-button").innerHTML = `MINT (${Number.parseFloat(Number(inputValue) ? price * Number(inputValue) : price).toFixed(2)} ETH)`;
+    document.getElementById("mint-button-mobile").innerHTML = `MINT (${Number.parseFloat(Number(inputValue) ? price * Number(inputValue) : price).toFixed(2)} ETH)`;
   });
   $("#amount-input-mobile").on("input propertychange", () => {
     var inputValue = document.getElementById("amount-input-mobile").value;
-    document.getElementById("mint-button").innerHTML = `MINT (${inputValue ? price * inputValue : price} ETH)`;
-    document.getElementById("mint-button-mobile").innerHTML = `MINT (${inputValue ? price * inputValue : price} ETH)`;
+    document.getElementById("mint-button").innerHTML = `MINT (${Number.parseFloat(Number(inputValue) ? price * Number(inputValue) : price).toFixed(2)} ETH)`;
+    document.getElementById("mint-button-mobile").innerHTML = `MINT (${Number.parseFloat(Number(inputValue) ? price * Number(inputValue) : price).toFixed(2)} ETH)`;
   });
 };
