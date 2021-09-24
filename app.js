@@ -877,7 +877,7 @@ window.onload = () => {
     }
   };
 
-  connectWallet();
+  switchNetwork();
 
   const handleMint = async () => {
     $.toast().reset("all");
