@@ -788,9 +788,6 @@ ethereum.on('accountsChanged', function (accounts) {
 
 
 window.onload = () => {
-	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-		window.location.replace('https://metamask.app.link/dapp/arbiants.github.io/');
-	   }
   var animateButton = function (e) {
     e.preventDefault();
     e.target.classList.remove("animate");
@@ -832,13 +829,13 @@ window.onload = () => {
 
     document.getElementById("copy-button").innerHTML = "COPY LINK";
 
-    const inputValuePC = document.getElementById("amount-input").value;
-    const inputValueMobile = document.getElementById("amount-input-mobile").value;
-    const inputValue = inputValuePC || inputValueMobile;
+    //const inputValuePC = document.getElementById("amount-input").value;
+   // const inputValueMobile = document.getElementById("amount-input-mobile").value;
+    const inputValue = document.getElementById("amount-input").value;
     var mintBtnText = `MINT (${Number.parseFloat(Number(inputValue) ? price * Number(inputValue) : price).toFixed(2)} ETH)`;
     console.debug("mintBtnText", mintBtnText);
     document.getElementById("mint-button").innerHTML = mintBtnText;
-    document.getElementById("mint-button-mobile").innerHTML = mintBtnText;
+   // document.getElementById("mint-button-mobile").innerHTML = mintBtnText;
   };
 
   const failedConnectWallet = () => {
@@ -1016,7 +1013,7 @@ window.onload = () => {
     }
   };
 
-  const handleMintMobile = async () => {
+  /*const handleMintMobile = async () => {
     $.toast().reset("all");
     if (!provider) {
       connectWallet();
@@ -1104,7 +1101,7 @@ window.onload = () => {
         });
       }
     }
-  };
+  };*/
 
   document.getElementById("address-button").addEventListener("click", switchNetwork);
   document.getElementById("switch-button").addEventListener("click", switchNetwork);
@@ -1112,16 +1109,16 @@ window.onload = () => {
   document.getElementById("copy-button").addEventListener("click", handleCopy);
 
   document.getElementById("mint-button").addEventListener("click", handleMint);
-  document.getElementById("mint-button-mobile").addEventListener("click", handleMintMobile);
+ // document.getElementById("mint-button-mobile").addEventListener("click", handleMintMobile);
 
   $("#amount-input").on("input propertychange", () => {
     var inputValue = document.getElementById("amount-input").value;
     document.getElementById("mint-button").innerHTML = `MINT (${Number.parseFloat(Number(inputValue) ? price * Number(inputValue) : price).toFixed(2)} ETH)`;
-    document.getElementById("mint-button-mobile").innerHTML = `MINT (${Number.parseFloat(Number(inputValue) ? price * Number(inputValue) : price).toFixed(2)} ETH)`;
+   // document.getElementById("mint-button-mobile").innerHTML = `MINT (${Number.parseFloat(Number(inputValue) ? price * Number(inputValue) : price).toFixed(2)} ETH)`;
   });
-  $("#amount-input-mobile").on("input propertychange", () => {
+  /*$("#amount-input-mobile").on("input propertychange", () => {
     var inputValue = document.getElementById("amount-input-mobile").value;
     document.getElementById("mint-button").innerHTML = `MINT (${Number.parseFloat(Number(inputValue) ? price * Number(inputValue) : price).toFixed(2)} ETH)`;
-    document.getElementById("mint-button-mobile").innerHTML = `MINT (${Number.parseFloat(Number(inputValue) ? price * Number(inputValue) : price).toFixed(2)} ETH)`;
-  });
+    //document.getElementById("mint-button-mobile").innerHTML = `MINT (${Number.parseFloat(Number(inputValue) ? price * Number(inputValue) : price).toFixed(2)} ETH)`;
+  });*/
 };
