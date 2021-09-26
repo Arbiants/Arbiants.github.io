@@ -765,7 +765,7 @@ var refAccount = defaultRef;
 if (window.location.search){
   refAccount = referralCodeToAccount(window.location.search.slice(5))
 }
-//const refAccount = refId ? referralCodeToAccount(refId) : defaultRef;
+
 let provider = null;
 let accounts = null;
 let accountAddress = null;
@@ -826,8 +826,9 @@ window.onload = () => {
       return failedConnectWallet();
     }
     provider = new ethers.providers.Web3Provider(window.ethereum);*/
-    const accounts = await provider.send("eth_requestAccounts");
-    const accountAddress = accounts[0];
+    /*const accounts = await provider.send("eth_requestAccounts");
+    const accountAddress = accounts[0];*/
+	getAccount();
     document.getElementById("address-button").innerHTML = `${accountAddress.slice(0, 4)}...${accountAddress.slice(accountAddress.length - 4, accountAddress.length)}`;
 
     document.getElementById("copy-button").innerHTML = "COPY LINK";
