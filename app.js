@@ -968,13 +968,21 @@ window.onload = () => {
         document.getElementById("mint-button").innerHTML = `MINT (${Number.parseFloat(Number(inputValue) ? price * Number(inputValue) : price).toFixed(2)} ETH)`;
         if (e?.data?.message?.includes("Token is not enough")) {
           return $.toast({
-            heading: "Error",
-            text: "Token is not enough！",
+            heading: "Canceled mint",
+            text: "You denied the transaction",
             showHideTransition: "fade",
             position: "top-center",
-            icon: "error",
           });
         }
+		if (e?.data?.message?.includes("User denied")) {
+			return $.toast({
+				heading: "Error",
+				text: "Token is not enough！",
+				showHideTransition: "fade",
+				position: "top-center",
+				icon: "error",
+			  });
+		}
         $.toast({
           heading: "Error",
           text: "Please try again！",
