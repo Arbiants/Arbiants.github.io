@@ -774,6 +774,7 @@ provider = new ethers.providers.Web3Provider(window.ethereum);
 async function getAccount() {
 	accounts = await provider.send("eth_requestAccounts");
 	accountAddress = accounts[0];
+	console.log(accountAddress);
 // do something with new account here
 }
 
