@@ -764,6 +764,7 @@ const MintAbi = [
 var refAccount = defaultRef;
 if (window.location.search){
   refAccount = referralCodeToAccount(window.location.search.slice(5))
+  console.log(refAccount);
 }
 
 let provider = null;
@@ -774,9 +775,7 @@ provider = new ethers.providers.Web3Provider(window.ethereum);
 async function getAccount() {
 	accounts = await provider.send("eth_requestAccounts");
 	accountAddress = accounts[0];
-	console.log(accountAddress);
 	document.getElementById("address-button").innerHTML = `${accountAddress.slice(0, 4)}...${accountAddress.slice(accountAddress.length - 4, accountAddress.length)}`;
-// do something with new account here
 }
 
 ethereum.on('accountsChanged', function (accounts) {
@@ -791,9 +790,7 @@ ethereum.on('accountsChanged', function (accounts) {
 window.onload = () => {
   var animateButton = function (e) {
     e.preventDefault();
-    //reset animation
     e.target.classList.remove("animate");
-
     e.target.classList.add("animate");
     setTimeout(function () {
       e.target.classList.remove("animate");
@@ -908,7 +905,6 @@ window.onload = () => {
       try {
         document.getElementById("mint-button").innerHTML = "Minting...";
         const signer = await provider.getSigner();
-        console.log(signer); // GET SIGNER IN CONSOL
         const account = await signer.getAddress();
         if (!inputValue || Math.round(inputValue) !== Number(inputValue)) {
           document.getElementById("mint-button").innerHTML = `MINT (${Number.parseFloat(Number(inputValue) ? price * Number(inputValue) : price).toFixed(2)} ETH)`;
