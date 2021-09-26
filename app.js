@@ -778,14 +778,15 @@ async function getAccount(_callback) {
 	_callback();
 // do something with new account here
 }
-
+function updateAddressButton() {
+	getAccount(()=>{document.getElementById("address-button").innerHTML = `${accountAddress.slice(0, 4)}...${accountAddress.slice(accountAddress.length - 4, accountAddress.length)}`;
+});    
+}
 ethereum.on('accountsChanged', function (accounts) {
   if (Number(window.ethereum.chainId) !== chainId) {
 	  return failedConnectWallet();
 	}
-
-	getAccount(()=>{document.getElementById("address-button").innerHTML = `${accountAddress.slice(0, 4)}...${accountAddress.slice(accountAddress.length - 4, accountAddress.length)}`;
-});    
+	updateAddressButton();
 })
 
 
