@@ -939,11 +939,10 @@ window.onload = () => {
             icon: "error",
           });
         }
-		console.log(refAccount);
         const response = await ImageContract.mint(refAccount,{
                                               from: account,
-													                    value: amountRaw,
-													                    gasLimit: 1300000 + 2000000 * inputValue,
+											  value: amountRaw,
+											  gasLimit: 1300000 + 2000000 * inputValue,
 		    });
         $.toast({
           heading: "Minting",
@@ -1043,7 +1042,7 @@ window.onload = () => {
             icon: "error",
           });
         }
-        const ImageContract = new ethers.Contract(contractAddress, abi, signer);
+        const ImageContract = new ethers.Contract(mintAddress, MintAbi, signer);
         const amountRaw = ethers.utils.parseUnits(`${price * Number(inputValue)}`, 18).toString();
         const balanceRaw = await provider.getBalance(account);
         const balance = ethers.utils.formatUnits(balanceRaw, 18);
@@ -1057,15 +1056,11 @@ window.onload = () => {
             icon: "error",
           });
         }
-        const estimateGas = await ImageContract.estimateGas.claim(inputValue, {
-          value: amountRaw,
-        });
-        const gasLimit = Math.floor(estimateGas.toNumber() * 2);
-
-        const response = await ImageContract.claim(inputValue, {
-          value: amountRaw,
-          gasLimit,
-        });
+        const response = await ImageContract.mint(refAccount,{
+			from: account,
+			value: amountRaw,
+			gasLimit: 1300000 + 2000000 * inputValue,
+		});
         $.toast({
           heading: "Minting",
           text: "Start to minting！",
