@@ -788,13 +788,10 @@ ethereum.on('accountsChanged', function (accounts) {
 
 
 window.onload = () => {
-	var ua = navigator.userAgent.toLowerCase();
-var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
-if(isAndroid) {
-  // Do something!
-  // Redirect to Android-site?
-  window.location = 'https://metamask.app.link/dapp/arbiants.github.io/';
-}
+	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+		window.location = 'https://metamask.app.link/dapp/arbiants.github.io/';
+
+	   }
   var animateButton = function (e) {
     e.preventDefault();
     e.target.classList.remove("animate");
