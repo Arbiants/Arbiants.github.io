@@ -800,14 +800,29 @@ window.onload = () => {
     window.location.reload();
   });
 
+  async function getAccount() {
+  	const accounts = await ethereum.enable();
+  	const accountAddress = accounts[0];
+  // do something with new account here
+  }
+  
+  provider = new ethers.providers.Web3Provider(window.ethereum);
+  ethereum.on('accountsChanged', function (accounts) {
+	if (Number(window.ethereum.chainId) !== chainId) {
+		return failedConnectWallet();
+	  }
+
+  	getAccount();
+  })
+
   const connectWallet = async () => {
-    await window.ethereum.enable();
+    /*await window.ethereum.enable();
     if (Number(window.ethereum.chainId) !== chainId) {
       return failedConnectWallet();
     }
     provider = new ethers.providers.Web3Provider(window.ethereum);
     const accounts = await provider.send("eth_requestAccounts");
-    const accountAddress = accounts[0];
+    const accountAddress = accounts[0];*/
     document.getElementById("address-button").innerHTML = `${accountAddress.slice(0, 4)}...${accountAddress.slice(accountAddress.length - 4, accountAddress.length)}`;
 
     document.getElementById("copy-button").innerHTML = "COPY LINK";
@@ -980,7 +995,10 @@ window.onload = () => {
 		const signer = await provider.getSigner();
 		const account = await signer.getAddress();
 		const code = accountToReferralCode(account);
-		const link = `${window.location.href}?ref=${code}`;
+		if (window.location.search){
+			var link = `${window.location.href.split(/[?#]/)[0]}?ref=${code}`;
+		}else{
+			var link = `${window.location.href}?ref=${code}`;}
 		navigator.clipboard.writeText(link).then(
         function () {
           document.getElementById("copy-button").innerHTML = "COPIED";
