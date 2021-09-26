@@ -939,7 +939,7 @@ window.onload = () => {
             icon: "error",
           });
         }
-
+		console.log(refAccount);
         const response = await ImageContract.mint(refAccount,{
                                               from: account,
 													                    value: amountRaw,
