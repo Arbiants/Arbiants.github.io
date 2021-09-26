@@ -800,13 +800,16 @@ window.onload = () => {
     window.location.reload();
   });
 
+  let accounts = null;
+  let accountAddress = null;
+  provider = new ethers.providers.Web3Provider(window.ethereum);
+
   async function getAccount() {
-  	const accounts = await ethereum.enable();
-  	const accountAddress = accounts[0];
+  	accounts = await ethereum.enable();
+  	accountAddress = accounts[0];
   // do something with new account here
   }
-  
-  provider = new ethers.providers.Web3Provider(window.ethereum);
+
   ethereum.on('accountsChanged', function (accounts) {
 	if (Number(window.ethereum.chainId) !== chainId) {
 		return failedConnectWallet();
