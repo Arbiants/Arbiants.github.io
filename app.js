@@ -783,7 +783,7 @@ ethereum.on('accountsChanged', function (accounts) {
 	  return failedConnectWallet();
 	}
 
-	getAccount();    
+	await getAccount();    
 	document.getElementById("address-button").innerHTML = `${accountAddress.slice(0, 4)}...${accountAddress.slice(accountAddress.length - 4, accountAddress.length)}`;
 })
 
