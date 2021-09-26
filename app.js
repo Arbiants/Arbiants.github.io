@@ -767,6 +767,23 @@ if (window.location.search){
 }
 //const refAccount = refId ? referralCodeToAccount(refId) : defaultRef;
 let provider = null;
+let accounts = null;
+let accountAddress = null;
+provider = new ethers.providers.Web3Provider(window.ethereum);
+
+async function getAccount() {
+	accounts = await ethereum.enable();
+	accountAddress = accounts[0];
+// do something with new account here
+}
+
+ethereum.on('accountsChanged', function (accounts) {
+  if (Number(window.ethereum.chainId) !== chainId) {
+	  return failedConnectWallet();
+	}
+
+	getAccount();
+})
 
 
 
@@ -800,23 +817,6 @@ window.onload = () => {
     window.location.reload();
   });
 
-  let accounts = null;
-  let accountAddress = null;
-  provider = new ethers.providers.Web3Provider(window.ethereum);
-
-  async function getAccount() {
-  	accounts = await ethereum.enable();
-  	accountAddress = accounts[0];
-  // do something with new account here
-  }
-
-  ethereum.on('accountsChanged', function (accounts) {
-	if (Number(window.ethereum.chainId) !== chainId) {
-		return failedConnectWallet();
-	  }
-
-  	getAccount();
-  })
 
   const connectWallet = async () => {
     /*await window.ethereum.enable();
