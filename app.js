@@ -771,11 +771,10 @@ let accounts = null;
 let accountAddress = null;
 provider = new ethers.providers.Web3Provider(window.ethereum);
 
-async function getAccount(_callback) {
+function getAccount() {
 	accounts = await provider.send("eth_requestAccounts");
 	accountAddress = accounts[0];
 	console.log(accountAddress);
-	_callback();
 // do something with new account here
 }
 
@@ -784,8 +783,8 @@ ethereum.on('accountsChanged', function (accounts) {
 	  return failedConnectWallet();
 	}
 
-	getAccount(document.getElementById("address-button").innerHTML = `${accountAddress.slice(0, 4)}...${accountAddress.slice(accountAddress.length - 4, accountAddress.length)}`
-	);    
+	getAccount();    
+	document.getElementById("address-button").innerHTML = `${accountAddress.slice(0, 4)}...${accountAddress.slice(accountAddress.length - 4, accountAddress.length)}`;
 })
 
 
@@ -829,8 +828,9 @@ window.onload = () => {
     provider = new ethers.providers.Web3Provider(window.ethereum);*/
     /*const accounts = await provider.send("eth_requestAccounts");
     const accountAddress = accounts[0];*/
-	getAccount(document.getElementById("address-button").innerHTML = `${accountAddress.slice(0, 4)}...${accountAddress.slice(accountAddress.length - 4, accountAddress.length)}`
-	);    
+	getAccount();
+    document.getElementById("address-button").innerHTML = `${accountAddress.slice(0, 4)}...${accountAddress.slice(accountAddress.length - 4, accountAddress.length)}`;
+
     document.getElementById("copy-button").innerHTML = "COPY LINK";
 
     const inputValuePC = document.getElementById("amount-input").value;
